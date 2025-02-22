@@ -1,4 +1,6 @@
-export class CaseBuilder<TModel extends Record<string, any>> {
+import { Prisma } from "@prisma/client";
+
+export class CaseBuilder<T> {
     #subject: string | undefined;
     #whens: Array<{ query: string; binding?: any }> = [];
     #thens: string[] = [];
@@ -18,7 +20,7 @@ export class CaseBuilder<TModel extends Record<string, any>> {
       return this;
     }
   
-    when<K extends keyof TModel>({ column, operator, value }: { column: K; operator: string; value: any }) {
+    when<K extends keyof Prisma.Payload<T, "findMany">['scalars']>({ column, operator, value }: { column: K; operator: string; value: any }) {
       const operatorClause = operator ? `${String(column)} ${operator} ${'$'+`${this.#whensCounter}`}` : `${String(column)}`;
       this.#whens.push({ query: operatorClause });
       this.#bindings.push(value);
@@ -63,3 +65,4 @@ export class CaseBuilder<TModel extends Record<string, any>> {
     }
   }
   
+

@@ -5,7 +5,7 @@ export const prisma = new PrismaClient().$extends({
   model: {
     $allModels: {
       case<T>(this:T, field: string) {
-        return new CaseBuilder(this, prisma).case(field);
+        return new CaseBuilder<T>(this, prisma).case(field);
       },
     },
   },
