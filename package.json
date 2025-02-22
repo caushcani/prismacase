@@ -1,17 +1,27 @@
 {
-  "name": "prismacase",
+  "name": "prisma-case-builder",
   "version": "1.0.0",
-  "main": "server.ts",
+  "main": "dist/main.js",
+  "types": "dist/main.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node server.ts"
+    "start": "ts-node server.ts",
+    "build": "tsc"
   },
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "author": "Caush Cani",
+  "license": "MIT",
+  "description": "A simple and lightweight CASE query builder for Prisma",
+  "keywords": [
+    "prisma",
+    "query builder",
+    "case statement",
+    "database",
+    "typescript"
+  ],
   "dependencies": {
     "@prisma/client": "^6.4.1",
     "express": "^4.21.2",
+    "prisma-case-builder": "^1.0.0",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
